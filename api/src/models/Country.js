@@ -31,7 +31,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING
     },
     population_Size:{
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      validate:{
+        min:0
+      }
     }
   });
 };
