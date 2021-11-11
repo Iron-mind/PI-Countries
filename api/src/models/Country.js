@@ -8,5 +8,31 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    ID:{
+      type: DataTypes.STRING(3),
+      allowNull:false
+    },
+    flagImage:{
+      type:DataTypes.STRING,
+      allowNull:false
+    },
+    continent:{
+      type: DataTypes.ENUM(['Africa',	  'Asia',	  'Europe',	 'North America',	  'South America'	,  'Antarctica',	  'Oceania'])
+     , allowNull:false
+    },
+    capital:{
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    area:{
+      type: DataTypes.STRING
+    },
+    subregion:{
+      type: DataTypes.STRING
+    },
+    population_Size:{
+      type: DataTypes.INTEGER
+    }
   });
 };
+
