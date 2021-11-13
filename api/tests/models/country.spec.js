@@ -14,9 +14,29 @@ describe('Country model', () => {
           .then(() => done(new Error('It requires a valid name')))
           .catch(() => done());
       });
-      it('should work when its a valid name', () => {
-        Country.create({ name: 'Argentina' });
+      it('should work with valid properties', (done) => {
+        Country.create({
+          name: 4,
+          ID: 'col',
+          flagImage: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Ftopic%2Fflag-of-Colombia&psig=AOvVaw09WAK60noFwmfKYCVPluzR&ust=1636852308885000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCODHjJSUlPQCFQAAAAAdAAAAABAD',
+          continent: 'South America',
+          capital: 'Bogotá',
+          area: 3232342,
+          subregion: 'South America',
+          population_Size: 40000000,
+        })
+        .then(() => done())
+        .catch(() => done('Valid country was not created'));
       });
+
+      it('should not work when mandatory properties are missing', () => {
+        Country.create({
+          name: 'colombia',
+          ID: 'col', 
+        })
+        .then(() => done('invalid country was created'))
+        .catch(() => done()) ;;
+      })
     });
   });
 });
