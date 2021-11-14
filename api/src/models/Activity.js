@@ -1,6 +1,7 @@
 
 
 const { DataTypes } = require('sequelize');
+const Country = require('./Country');
 
 module.exports = (sequelize) => {
   
@@ -21,11 +22,11 @@ module.exports = (sequelize) => {
 
 
     },
-    seasons:{
+    season:{
       type:DataTypes.ENUM(['spring', 'summer', 'autumn' , 'winter']),
       
-   
     }
+
   });
 };
 
