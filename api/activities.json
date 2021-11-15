@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Visitar el serro de montserrat",
+    "difficulty": 4,
+    "duration": "3 horas",
+    "season": "summer",
+     "country":"colombia"
+  },
+  
+  {
+    
+    "name": "visit gold museum",
+    "difficulty": 2,
+    "duration": "2 h",
+    "season": "autumn",
+    "country":"colombia"
+    
+  },
+  {
+    
+    "name": "go to montañitas surfing beach",
+    "difficulty": 4,
+    "duration": "2-5 h",
+    "season": "summer",
+    "country":"ecuador"
+    
+  },
+  {
+    
+    "name": "see Statue of Liberty",
+    "difficulty": 3,
+    "duration": "2 h",
+    "season": "spring",
+    "country":"united states"
+    
+  }
+]
