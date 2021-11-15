@@ -6,16 +6,20 @@ const { Country, Activity, conn } = require('../../src/db.js');
 
 
 const agent = session(app);
-const country = {
-  name: 'Colombia',
-  ID: 'col',
-  flagImage: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Ftopic%2Fflag-of-Colombia&psig=AOvVaw09WAK60noFwmfKYCVPluzR&ust=1636852308885000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCODHjJSUlPQCFQAAAAAdAAAAABAD',
-  continent: 'South America',
-  capital: 'Bogotá',
-  area: 3232342,
-  subregion: 'South America',
-  population_Size: 40000000,
-};
+//country sacado de la base de datos
+async function findById(countryId) {
+  
+  let c = await Country.findOne({
+    where: {
+      ID: {
+        [Op.iLike]: `%${countryId}%`,
+      },
+    },
+  })
+  return c
+
+}
+const country = findById('col');
 
 const activityPosted ={
   
@@ -26,12 +30,13 @@ const activityPosted ={
   "country": "colombia"
 }
 
+
 const country2 = {
   ...country,
   activities: [activityPosted]
 }
 
-describe('Post /activity', () => {
+xdescribe('Post /activity', () => {
   it('should get 200', () =>
     agent.post('/activity')
     .send(activityPosted)
@@ -41,7 +46,7 @@ describe('Post /activity', () => {
   
   it('should be exist the activity: visit Montserrat', function(){
     return agent.post('/activity')
-           .send(JSON.stringify(activityPosted))
+           .send(activityPosted)
            .then(() => {
             return Activity.findOne({
               where: {
@@ -62,12 +67,9 @@ describe('Post /activity', () => {
 
 
 describe('Country routes', () => {
-  before(() => conn.authenticate()
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  }));
-  beforeEach(() => Country.sync({ force: true })
-    .then(() => Country.create( country)));
+  
+  beforeEach(() => Country.sync({ force: false }))
+    
   describe('GET /countries', () => {
     it('should get 200', () =>
       agent.get('/countries').expect(200)
@@ -103,20 +105,20 @@ describe('Country routes', () => {
   });
 
 
-  describe(`GET /countries/?name='...'`, () => {
+  describe(`GET /countries?name='...'`, () => {
     it('should get 200', () =>
-      agent.get('/countries/?name=Colombia').expect(200)
+      agent.get('/countries?name=Colombia').expect(200)
     );
     it('response should be json', function(){
-      return agent.get('/countries/?name=Colombia')
+      return agent.get('/countries?name=Colombia')
         .expect('Content-Type', /json/);
     })
     it('response should be colombian object', function(){
-      return agent.get('/countries/?name=Colombia')
+      return agent.get('/countries?name=Colombia')
         .expect(country2);
     })
     it('no response when name is invalid', function(){
-      return agent.get('/countries/?name=polombia')
+      return agent.get('/countries?name=polombia')
         .expect(400);
     })
   

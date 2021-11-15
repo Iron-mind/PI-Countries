@@ -6,28 +6,65 @@ const { Op } = require('sequelize');
 // Ejemplo: const authRouter = require('./auth.js');
 
 
-
 const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.get('/countries', async (req,res)=>{
   try {
-    let countries = await Country.findAll({
-      include: Activity // que incluya las actividades
+    let {name} = req.query
+    if (!name) {
+      let countries = await Country.findAll({
+        include: Activity // que incluya las actividades
+      })
+      return res.status(200).json(countries)
+      
+    }
+
+    let country = await Country.findOne({
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      },
+      include: Activity
     })
 
-
-    res.status(200).json(countries)
+    if(!country) return res.status(400).json('country not found')
+    res.status(200).json(country)
     
   } catch (error) {
-    res.status(400).json('countries not found')
+    res.status(400).send('countries not found')
   }
     
 })
 
 
-router.get('/countries/:id')
+router.get('/countries/:id', async (req,res)=>{
+  try {
+    let {id} = req.params 
+    
+    if(!id) return res.status(200).json('country not found')
+
+    let country = await Country.findOne({
+      where: {
+        ID: {
+          [Op.iLike]: `%${id}%`,
+        },
+      },
+      include: Activity
+    })
+
+    if(!country) return res.status(400).send('country not found')
+
+    res.status(200).send(country)
+
+
+  } catch (err) {
+    res.status(400).json('countries not found')
+  }
+
+})
 
 router.post('/activity', async (req,res)=>{
     
@@ -40,7 +77,7 @@ router.post('/activity', async (req,res)=>{
           },
         },
       });
-
+    
       let ActivityInDatabase = await Activity.create(act);
 
       countryInDatabase.addActivity(ActivityInDatabase);
