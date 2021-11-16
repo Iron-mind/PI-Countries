@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { Country, Activity, conn} = require('../db.js')
 const { Op } = require('sequelize');
 
+
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -21,7 +22,7 @@ router.get('/countries', async (req,res)=>{
       
     }
 
-    let country = await Country.findOne({
+    let country = await Country.findAll({
       where: {
         name: {
           [Op.iLike]: `%${name}%`,

@@ -36,7 +36,11 @@ const country2 = {
   activities: [activityPosted]
 }
 
-xdescribe('Post /activity', () => {
+describe('Post /activity', () => {
+  beforeEach(() => {
+    Country.sync({ force: true })
+    
+  })
   it('should get 200', () =>
     agent.post('/activity')
     .send(activityPosted)
@@ -68,7 +72,7 @@ xdescribe('Post /activity', () => {
 
 describe('Country routes', () => {
   
-  beforeEach(() => Country.sync({ force: false }))
+  beforeEach(() => Country.sync({ force: true }))
     
   describe('GET /countries', () => {
     it('should get 200', () =>
