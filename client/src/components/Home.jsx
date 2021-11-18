@@ -1,15 +1,10 @@
 import React  from "react";
-import Nav from './Nav'
+import Nav from './Nav.jsx'
 import './Home.css'
 
-export default function componentName() {
+export default function Home() {
   return ( <div className="home">
      <Nav />
-
-
-
-
-   <div>navbar/ searcbar</div>
    <p>
       botones  de filtrado    |       countries result        {"\n"}
                               |      ________________            {"\n"}

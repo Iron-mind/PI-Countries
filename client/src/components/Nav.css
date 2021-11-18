@@ -1,0 +1,19 @@
+.navbar {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #697f9cef;
+}
+#worldIcon {
+    margin: 0.7rem 0.7rem 0.7rem 0.7rem;
+}
+
+.left-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title-header {
+    display: inline;
+}
