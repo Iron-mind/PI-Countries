@@ -1,0 +1,43 @@
+
+.landingImg {
+    width: 100%;
+    height: 360px;
+    background-image: url('../countries.png');
+    background-position: center;
+    font-family: sans-serif;
+    background-size: cover;
+    margin: auto;
+    margin-bottom: 0px;
+    position: relative;
+    top: 10px;
+    border-radius: 5px;
+
+    
+}
+
+.btn-home{
+    position: relative;
+    top: 35%;
+    
+    background-color: #737a83ef;
+    font-size: 30px;
+    padding: 6px 16px;
+    min-width: 64px;
+    box-sizing: border-box;
+    
+    font-weight: 500;
+    line-height: 1.75;
+    border-radius: 10px;
+
+}
+
+.title {
+    background-color:#737a83ef ;
+    font-size: 60px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+

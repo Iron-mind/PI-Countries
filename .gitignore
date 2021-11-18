@@ -106,5 +106,6 @@ dist
 # package-lock.json
 package-lock.json
 
-# un archivo mio
+# un archivo mio donde tomé apuntes del desarrollo
 metodologiaBackend.md
+metodologiafrontend.md
