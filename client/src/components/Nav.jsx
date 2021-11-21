@@ -4,7 +4,7 @@ import world from './LogoWorld.png'
 import './Nav.css'
 
 export default function Nav() {
-  return ( <header >
+  return ( 
      
       <nav className="navbar">
         <div className='left-nav'>
@@ -15,5 +15,5 @@ export default function Nav() {
         <SearchBar />
       </nav>
 
-</header>)
+)
   }

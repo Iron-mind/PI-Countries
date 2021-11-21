@@ -16,7 +16,12 @@ router.get('/countries', async (req,res)=>{
     let {name} = req.query
     if (!name) {
       let countries = await Country.findAll({
+        // Add order conditions here....
+        order: [
+            ['name', 'ASC'],
+        ],
         include: Activity // que incluya las actividades
+
       })
       return res.status(200).json(countries)
       
@@ -28,6 +33,9 @@ router.get('/countries', async (req,res)=>{
           [Op.iLike]: `%${name}%`,
         },
       },
+      order: [
+        ['name', 'ASC'],
+      ],
       include: Activity
     })
 

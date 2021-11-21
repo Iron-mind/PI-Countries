@@ -1,18 +1,16 @@
 import React  from "react";
 import Nav from './Nav.jsx'
+import Options from "./Options.jsx";
+import Cards from "./Cards.jsx";
 import './Home.css'
 
 export default function Home() {
   return ( <div className="home">
      <Nav />
-   <p>
-      botones  de filtrado    |       countries result        {"\n"}
-                              |      ________________            {"\n"}
-                              |     |                |           {"\n"}
-                              |     | countrie info  |
-                              |     __________________
-                              |
-   </p>
-
+     <div className="row">
+       <aside> <Options/> </aside>
+       <section><Cards/> </section>
+     </div>
+   
 </div>)
   }
