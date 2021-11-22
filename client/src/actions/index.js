@@ -20,6 +20,6 @@ export function getCountries(name) {
       .then((json) => {
         dispatch({ type: GET_COUNTRIES, payload: json });
       })
-      .catch(console.warn('error en la respuesta del servidor'));
+      .catch(console.warn('server response error'));
   };
 }
