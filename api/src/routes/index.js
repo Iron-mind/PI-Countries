@@ -13,18 +13,22 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.get('/countries', async (req,res)=>{
   try {
-    let {name} = req.query
+    let {name,Pasc} = req.query
+    Pasc = (Pasc.toLowerCase() === 'true')
+    
     if (!name) {
       let countries = await Country.findAll({
         // Add order conditions here....
-        order: [
+        order: !Pasc?[
             ['name', 'ASC'],
+        ]:[
+            ['population_Size', 'ASC'],
         ],
         include: Activity // que incluya las actividades
 
       })
       return res.status(200).json(countries)
-      
+
     }
 
     let country = await Country.findAll({
@@ -33,26 +37,28 @@ router.get('/countries', async (req,res)=>{
           [Op.iLike]: `%${name}%`,
         },
       },
-      order: [
-        ['name', 'ASC'],
+      order: !Pasc?[
+          ['name', 'ASC'],
+      ]:[
+          ['population_Size', 'ASC'],
       ],
       include: Activity
     })
 
     if(!country) return res.status(400).json('country not found')
     res.status(200).json(country)
-    
+
   } catch (error) {
     res.status(400).send('countries not found')
   }
-    
+
 })
 
 
 router.get('/countries/:id', async (req,res)=>{
   try {
-    let {id} = req.params 
-    
+    let {id} = req.params
+
     if(!id) return res.status(200).json('country not found')
 
     let country = await Country.findOne({
@@ -76,7 +82,7 @@ router.get('/countries/:id', async (req,res)=>{
 })
 
 router.post('/activity', async (req,res)=>{
-    
+
     try {
       const act = req.body;
       let countryInDatabase = await Country.findOne({
@@ -86,16 +92,16 @@ router.post('/activity', async (req,res)=>{
           },
         },
       });
-    
+
       let ActivityInDatabase = await Activity.create(act);
 
       countryInDatabase.addActivity(ActivityInDatabase);
 
       res.status(200).json(ActivityInDatabase);
-      
+
     } catch (error) {
         res.status(400).send('Problem To create the activity, check that all data is correct.');
-        
+
     }
 })
 
