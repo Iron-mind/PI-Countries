@@ -14,7 +14,9 @@ const router = Router();
 router.get('/countries', async (req,res)=>{
   try {
     let {name,Pasc} = req.query
-    Pasc = (Pasc.toLowerCase() === 'true')
+    if(Pasc){
+       Pasc = (Pasc.toLowerCase() === 'true')
+    }
     
     if (!name) {
       let countries = await Country.findAll({
