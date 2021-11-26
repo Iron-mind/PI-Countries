@@ -17,7 +17,7 @@ router.get('/countries', async (req,res)=>{
     if(Pasc){
        Pasc = (Pasc.toLowerCase() === 'true')
     }
-    
+
     if (!name) {
       let countries = await Country.findAll({
         // Add order conditions here....
@@ -86,6 +86,7 @@ router.get('/countries/:id', async (req,res)=>{
 router.post('/activity', async (req,res)=>{
 
     try {
+      
       const act = req.body;
       let countryInDatabase = await Country.findOne({
         where: {
@@ -102,7 +103,7 @@ router.post('/activity', async (req,res)=>{
       res.status(200).json(ActivityInDatabase);
 
     } catch (error) {
-        res.status(400).send('Problem To create the activity, check that all data is correct.');
+        res.status(400).json(error);
 
     }
 })
