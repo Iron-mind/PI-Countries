@@ -1,0 +1,54 @@
+.activities-container{
+    display: inline-flex;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+    
+}
+.container-info{
+    display: inline-flex;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+.activity {
+    flex-direction: column;
+    justify-content: space-between;
+    width: 180px;
+    min-height: 170px;
+    border-radius: 0.6rem;
+    margin: 8px;
+    background-color: #e9eef3ef;
+    box-shadow: 0.1rem 0.1rem 0.1rem #737a83ef;
+}
+span.data {
+    font-weight: 500;
+    
+}
+
+.activities-container .activity:hover {
+    transform: translateY(-0.2rem)
+}
+h1 {
+    margin: 0rem;
+    padding: 1rem;
+    background-color:#737a83ef ;
+}
+/* p {
+    margin: 1rem;
+} */
+
+.btn-add-activity {
+    
+        color: white;
+        font-size: 1.2rem;
+        background-color: #737a83ef;
+        border-radius: 0.5rem;
+  
+}

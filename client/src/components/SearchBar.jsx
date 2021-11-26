@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import './SearchBar.css'
-import { getCountries } from "../actions";
+import { getCountries,setSearchInput } from "../actions";
 import { connect } from "react-redux";
 
- function SearchBar({getCountries}) {
+ function SearchBar({getCountries, setSearchInput}) {
 
 
   const  [input, setInput] = useState("");
@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 
   const reqCountries=  (e)=>{
         e.preventDefault()
+        setSearchInput(input)
         getCountries(input)
         setInput('')
 
@@ -30,7 +31,8 @@ import { connect } from "react-redux";
 
 function mapDispatchToProps(dispatch) {
   return {
-    getCountries: (name) => dispatch(getCountries(name))
+    getCountries: (name) => dispatch(getCountries(name)),
+    setSearchInput: (input)=> dispatch(setSearchInput(input))
   };
 }
 

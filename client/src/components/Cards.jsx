@@ -5,20 +5,23 @@ import { getCountries } from "../actions";
 import './Cards.css'
 
 function Cards({ countries, getCountries }) {
-  //all countries when component did mount
-  useEffect(async () => {
+
+  useEffect(() => {
+  async function fetchData() {
+    // You can await here
     await getCountries("");
-  }, []);
+  }
+  fetchData();
+  }, [])
 
+  useEffect(()=>{
 
-//   useEffect(() => {
-//   async function fetchData() {
-//     // You can await here
-//     await getCountries("");
-//     // ...
-//   }
-//   fetchData();
-// }, [])
+    //when you press the search button the number of countries is changed so that the current page becomes 1.
+    if(countries.length<=pageNumberLimit && countries.length!==0){
+      setCurrentPage(1)
+    }
+  },[countries])
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
@@ -41,10 +44,7 @@ function Cards({ countries, getCountries }) {
   const indexOfFirsItem= indexOfLastItem-itemsPerPage
   const currentItems = countries.slice(indexOfFirsItem,indexOfLastItem)
 
-  //when you press the button the number of countries changes so that the current page becomes 1.
-  if(countries.length<=pageNumberLimit && countries.length!==0){
-    setCurrentPage(1)
-  }
+
   const handleClick = (e)=>{
     setCurrentPage(Number(e.target.id))
   }
@@ -128,6 +128,7 @@ function Cards({ countries, getCountries }) {
         flagImage={c.flagImage}
         ANID={c.ID} //Abbreviated name ID
         id={c.id}
+        population={c.population_Size}
       />
     );
   }): <div>Not found</div>}
@@ -136,8 +137,7 @@ function Cards({ countries, getCountries }) {
 
 const mapStateToProps = (state) => {
   return {
-    country: state.countryDetail,
-    countries: state.countries,
+    countries: state.countries
   };
 };
 function mapDispatchToProps(dispatch) {

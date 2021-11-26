@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "../reducers/index";
 import thunk from "redux-thunk";
-var store = createStore(rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 
-     applyMiddleware(thunk)
+var devtoolstore = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+var store = createStore(rootReducer,compose(applyMiddleware(thunk),devtoolstore)
+     
      )
 export default store
