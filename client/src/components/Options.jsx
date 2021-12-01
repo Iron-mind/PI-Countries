@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 
 
 
+
   //Here is the spaghetti code. Calm down, someday I will improve it
   let handlerSelectOrder=(e)=>{
     //if(e.target.name==="alp"){
@@ -79,7 +80,7 @@ import { connect } from "react-redux";
   return (
     <div className='left-bar'>
       <section>
-        <label htmlFor="alp">Order by Alphabetic</label>
+        <label htmlFor="alp">Order by Alphabetic </label>
         <select value={orderByAlphabetic} onChange={handlerSelectOrder} name="alp" >
           <option  disabled value='none' >Select</option>
 
@@ -90,7 +91,7 @@ import { connect } from "react-redux";
       </section>
       <section>
 
-        <label htmlFor="pop">Order by Population</label>
+        <label htmlFor="pop">Order by Population </label>
         <select value={orderByPopulation} name="pop" onChange={handlerSelectOrderP}>
           <option  value='none' >None</option>
 
@@ -99,20 +100,7 @@ import { connect } from "react-redux";
 
         </select>
       </section>
-      <section>
 
-        <label htmlFor="act">Order by Activity</label>
-        <select name="act" >
-          <option default value='none' >None </option>
-          <option  value="summer">Summer </option>
-          <option value="spring">Spring</option>
-          <option value="autumn">Autumn</option>
-          <option value="winter">Winter</option>
-
-        </select>
-
-
-      </section>
       <section>
 
         <label htmlFor="cont">Filtered by Continent </label>
@@ -139,6 +127,7 @@ const mapStateToProps = (state) => {
   return {
     countries: state.countries,
     searchInput: state.searchInput
+
   };
 };
 function mapDispatchToProps(dispatch) {
