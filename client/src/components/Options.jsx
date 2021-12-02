@@ -75,7 +75,13 @@ import { connect } from "react-redux";
     setContinent('none')
     filterByContinent('none')
 
+  }
 
+  function handleOnClick() {
+      getCountries('')
+      setContinent('none')
+      setOrderByPopulation('none')
+      setOrderByAlphabetic('asc')
   }
   return (
     <div className='left-bar'>
@@ -117,7 +123,7 @@ import { connect } from "react-redux";
         </select>
 
       </section>
-      <button className="reset">Reset</button>
+      <button className="reset" onClick={handleOnClick}>Reset</button>
     </div>
   );
 }
