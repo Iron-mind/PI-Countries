@@ -4,13 +4,13 @@ export var SET_INPUT = "SET_INPUT";
 export var FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
 export var GET_COUNTRY_BY_ID = "GET_COUNTRY_BY_ID";
 export var POST_ACTIVITY = "POST_ACTIVITY";
-
+ let linkApi = 'https://api-wcountries.herokuapp.com/'
 
 export function getCountries(name, populationOrder = false) {
   if (name) {
     return function (dispatch) {
       return fetch(
-        "http://localhost:3001/countries?name=" +
+        linkApi+"countries?name=" +
           name +
           "&Pasc=" +
           populationOrder
@@ -22,7 +22,7 @@ export function getCountries(name, populationOrder = false) {
     };
   } else {
     return function (dispatch) {
-      return fetch("http://localhost:3001/countries?Pasc=" + populationOrder)
+      return fetch(linkApi+"countries?Pasc=" + populationOrder)
         .then((response) => response.json())
         .then((json) => {
           dispatch({ type: GET_COUNTRIES, payload: json });
@@ -30,25 +30,6 @@ export function getCountries(name, populationOrder = false) {
     };
   }
 
-  // if (name) {
-  // return  function (dispatch) {
-  //     return fetch("http://localhost:3001/countries?name=" + name)
-  //       .then((response) => response.json())
-  //       .then((json) => {
-  //         dispatch({ type: GET_COUNTRIES, payload: json });
-  //       });
-  //   };
-
-  // }
-  //
-  //   return  function (dispatch) {
-  //     return fetch("http://localhost:3001/countries")
-  //       .then((response) => response.json())
-  //       .then((json) => {
-  //         dispatch({ type: GET_COUNTRIES, payload: json });
-  //       })
-  //       .catch(console.warn('server response error'));
-  //   };
 }
 
 //brings the countries and the reducer reverses them
@@ -56,7 +37,7 @@ export function getCountries(name, populationOrder = false) {
 export function getCountriesInOrder(name, populationOrder = false) {
   return function (dispatch) {
     return fetch(
-      "http://localhost:3001/countries?name=" +
+      linkApi+"countries?name=" +
         name +
         "&Pasc=" +
         populationOrder
@@ -85,7 +66,7 @@ export function filterByContinent(cont) {
 
 export function getCountryByID(ID) {
   return function (dispatch) {
-    return fetch("http://localhost:3001/countries/" + ID)
+    return fetch(linkApi+"countries/" + ID)
       .then((response) => response.json())
       .then((json) => {
         dispatch({ type: GET_COUNTRY_BY_ID, payload: json });
@@ -138,11 +119,14 @@ export function addActivity(act) {
 
 
 
-    return postData("http://localhost:3001/activity", act)
+    return postData(linkApi+"activity", act)
       .then((json) => {
         dispatch({ type: POST_ACTIVITY, payload: json });
       })
-      .catch(err=>console.warn("server response error",err));
+      .catch(err=>{
+        prompt('Activity not added, verify data')
+        console.warn("server response error",err)
+      });
   };
 
 }

@@ -7,7 +7,7 @@ export function AddActivity({ getCountries,temporaryCountries,countryDetail, add
     name: "",
     difficulty: "1",
     duration: "",
-    season: "summer",
+    season: "select",
     country: "select"
   });
 
@@ -20,20 +20,22 @@ export function AddActivity({ getCountries,temporaryCountries,countryDetail, add
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input);
+    
   };
   function handleSubmit(e) {
     e.preventDefault();
     addActivity(input)
-
-    setInput({
-      name: "",
-      difficulty: "1",
-      duration: "",
-      season: 'summer',
-      country: 'select'
-
-    });
+    if(input.name && input.duration && input.season!='select' && input.country!='select'){
+      setInput({
+        name: "",
+        difficulty: "1",
+        duration: "",
+        season: 'select',
+        country: 'select'
+     });
+    }else {
+      alert('activity not added')
+    }
     //alert("ToDo Agregado, miralo en dando clic en ToDos")
   }
 
@@ -121,7 +123,7 @@ export function AddActivity({ getCountries,temporaryCountries,countryDetail, add
             value={input.season}
             onChange={handleInputChange}
           >
-
+            <option value="select">Select</option>
             <option value="summer">summer</option>
             <option value="autumn">autumn</option>
             <option value="spring">spring</option>
