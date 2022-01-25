@@ -95,14 +95,15 @@ router.post('/activity', async (req,res)=>{
           },
         },
       });
-
+      console.log(act)
       let ActivityInDatabase = await Activity.create(act);
 
-      countryInDatabase.addActivity(ActivityInDatabase);
+     await countryInDatabase.addActivity(ActivityInDatabase);
 
       res.status(200).json(ActivityInDatabase);
 
     } catch (error) {
+      console.log(error);
         res.status(400).json(error);
 
     }
