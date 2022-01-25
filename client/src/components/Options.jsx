@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { getCountries, getCountriesInOrder,filterByContinent } from "../actions";
+import React, { useState,useEffect } from "react";
+import { getCountries, getCountriesInOrder,filterByContinent, setSearchInput } from "../actions";
 import { connect } from "react-redux";
 
- function Options({countries,getCountriesInOrder, getCountries, searchInput,filterByContinent}) {
-
-
+ function Options({countries,getCountriesInOrder, getCountries, searchInput,filterByContinent,setSearchInput}) {
+   
+   useEffect(()=>{
+          setSearchInput('')
+   },[])
   //TODO: pass these states to the 'store' to create reset options
   //TODO: create options reset functionality
   const [continent, setContinent] = useState('none')
@@ -82,6 +84,7 @@ import { connect } from "react-redux";
       setContinent('none')
       setOrderByPopulation('none')
       setOrderByAlphabetic('asc')
+      setSearchInput('')
   }
   return (
     <div className='left-bar'>
@@ -133,14 +136,15 @@ const mapStateToProps = (state) => {
   return {
     countries: state.countries,
     searchInput: state.searchInput
-
+    
   };
 };
 function mapDispatchToProps(dispatch) {
   return {
     getCountries: (name,populationOrder) => dispatch(getCountries(name,populationOrder)),
     getCountriesInOrder: (name, populationOrder)=> dispatch(getCountriesInOrder(name,populationOrder)),
-    filterByContinent: (cont)=> dispatch(filterByContinent(cont))
+    filterByContinent: (cont)=> dispatch(filterByContinent(cont)),
+    setSearchInput:(input)=> dispatch(setSearchInput(input))
   };
 }
 

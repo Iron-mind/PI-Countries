@@ -1,18 +1,14 @@
 
 .landingImg {
+
     width: 100%;
-    height: 360px;
+    height: 100%;
     background-image: url('../countries.png');
     background-position: center;
-    font-family: sans-serif;
     background-size: cover;
-    margin: auto;
-    margin-bottom: 0px;
+    margin-top:  0rem;
     position: relative;
-    top: 10px;
     border-radius: 5px;
-
-    
 }
 
 .btn-home{
@@ -41,3 +37,7 @@
     font-weight: bold;
 }
 
+.landing{
+  background-color: #ffffff;
+  height: 100vh;
+}
