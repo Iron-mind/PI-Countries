@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from "react";
 import { connect } from "react-redux";
 import {addActivity, getCountries} from '../actions'
+import { Link } from "react-router-dom";
 
 export function AddActivity({ getCountries,temporaryCountries,countryDetail, addActivity }) {
   const [input, setInput] = useState({
@@ -20,7 +21,7 @@ export function AddActivity({ getCountries,temporaryCountries,countryDetail, add
       ...input,
       [e.target.name]: e.target.value,
     });
-    
+
   };
   function handleSubmit(e) {
     e.preventDefault();
@@ -137,6 +138,11 @@ export function AddActivity({ getCountries,temporaryCountries,countryDetail, add
           </div>
 
       </form>
+      <Link to="/" style={{ textDecoration: 'none' }} >
+         <button className="btn-add-activity">Home</button>
+
+
+      </Link>
       </>
   );
 }
