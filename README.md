@@ -1,5 +1,19 @@
-Desplegado https://iron-mind.github.io/PI-Countries/
+# Countries web
 
+## Search by filter
+<p align="center">
+  <img height="500" src="./filter.png" />
+</p>
+
+## Landing
+<p align="right">
+  <img height="500" src="./home.png" />
+</p>
+
+## Home
+<p align="right">
+  <img height="500" src="./search.png" />
+</p>
 # ¿quieres replicar este proyecto?
 
 necesitas
